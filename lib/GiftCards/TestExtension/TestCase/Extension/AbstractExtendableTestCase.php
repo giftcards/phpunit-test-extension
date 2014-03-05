@@ -15,11 +15,6 @@ abstract class AbstractExtendableTestCase extends \PHPUnit_Framework_TestCase im
     {
         $this->testCaseExtensions[] = $extension;
 
-        if ($extension instanceof TestCaseAwareExtensionInterface) {
-
-            $extension->setTestCase($this);
-        }
-
         return $this;
     }
 

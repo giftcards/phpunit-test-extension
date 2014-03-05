@@ -1,8 +1,9 @@
 <?php
 
-namespace Giftcards\TestExtension\Listener;
+namespace GiftCards\TestExtension\Listener;
 
-use Giftcards\TestExtension\TestCase\Extension\ExtendableTestCaseInterface;
+use GiftCards\TestExtension\TestCase\Extension\ExtendableTestCaseInterface;
+use GiftCards\TestExtension\TestCase\Extension\TestCaseAwareExtensionInterface;
 
 class AddTestCaseExtensionsListener implements \PHPUnit_Framework_TestListener
 {
@@ -27,7 +28,13 @@ class AddTestCaseExtensionsListener implements \PHPUnit_Framework_TestListener
 
         foreach ($extensions as $className) {
 
-            $test->addExtension(new $className());
+            $extension = new $className();
+            $test->addExtension($extension);
+
+            if ($extension instanceof TestCaseAwareExtensionInterface) {
+
+                $extension->setTestCase($test);
+            }
         }
     }
 
