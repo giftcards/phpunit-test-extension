@@ -25,4 +25,4 @@ To configure the listener simply register it in your phpunit.xml.dist file
 
 ## Usage
 
-From test case you can use any of the public methods that are available from within your extension.
+From your test case you can use any of the public methods that are available from within your extension.
